@@ -2,7 +2,7 @@
 // StudyArc Service Worker
 // ==========================================
 
-const CACHE_NAME = "studyarc-v2";
+const CACHE_NAME = "studyarc-v3";
 
 const FILES_TO_CACHE = [
 
@@ -24,7 +24,7 @@ const FILES_TO_CACHE = [
 "achievement.html",
 "xp.html",
 
-"css/style.css",
+"style.css",
 
 "js/app.js",
 
