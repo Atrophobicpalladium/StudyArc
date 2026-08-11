@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e15">
+<meta name="color-scheme" content="dark">
+<title>StudyArc Login</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="images/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div style="padding-top:6vh;">
+
+  <h1 style="margin-bottom:8px;">Welcome Back 👋</h1>
+  <p style="margin-bottom:28px;">Let's continue your progress.</p>
+
+  <label class="field-label" for="loginEmail">Email</label>
+  <div class="field-wrap">
+    <span class="material-symbols-rounded" aria-hidden="true">mail</span>
+    <input id="loginEmail" type="email" placeholder="youremail@example.com" class="input">
+  </div>
+
+  <label class="field-label" for="loginPassword">Password</label>
+  <div class="field-wrap">
+    <span class="material-symbols-rounded" aria-hidden="true">lock</span>
+    <input id="loginPassword" type="password" placeholder="••••••••" class="input">
+    <button type="button" class="toggle-visibility" onclick="const p=document.getElementById('loginPassword'); p.type = p.type==='password' ? 'text' : 'password';" aria-label="Show password">
+      <span class="material-symbols-rounded">visibility</span>
+    </button>
+  </div>
+
+  <div class="field-row">
+    <label><input type="checkbox" style="width:auto;"> Remember me</label>
+    <a href="#">Forgot Password?</a>
+  </div>
+
+  <button class="button" onclick="location.href='home.html'">Login</button>
+
+  <p class="foot-row" style="margin-top:24px;">
+    Don't have an account? <a href="signup.html">Sign Up</a>
+  </p>
+
+</div>
+
+</body>
+</html>

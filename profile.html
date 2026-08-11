@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e15">
+<meta name="color-scheme" content="dark">
+<title>StudyArc - Profile</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="images/icon-192.png">
+<link rel="apple-touch-icon" href="images/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+<div style="text-align:center;padding:10px 0 6px;">
+  <div class="avatar" style="margin:0 auto;">A</div>
+  <h1 style="margin-top:14px;">Avinash</h1>
+  <p style="margin-top:4px;">
+    <span id="level">Level 1</span> • StudyArc Member
+  </p>
+  <div class="badge" style="margin-top:12px;">
+    <span id="streak">0 Day Streak</span>
+  </div>
+</div>
+
+<div class="card" style="margin-top:20px;">
+  <h2>📊 Study Statistics</h2>
+  <div class="grid" style="margin-bottom:0;">
+    <div class="stat">
+      <h1 id="totalStudy">0h 0m</h1>
+      <p>Total Study</p>
+    </div>
+    <a class="stat" href="xp.html">
+      <h1 id="xp">0 / 100 XP</h1>
+      <p>Experience</p>
+    </a>
+    <div class="stat">
+      <h1 id="goalTime">0h 0m / 6h</h1>
+      <p>Daily Goal</p>
+    </div>
+    <div class="stat">
+      <h1 id="goalPercent">0% Completed</h1>
+      <p>Goal Progress</p>
+    </div>
+  </div>
+</div>
+
+<a class="card" href="achievement.html" style="display:block;">
+  <h2 style="margin-bottom:14px;">🏆 Achievements</h2>
+  <p id="badge1" style="margin-bottom:6px;">🔒 Locked</p>
+  <p id="badge2" style="margin-bottom:6px;">🔒 Locked</p>
+  <p id="badge3">🔒 Locked</p>
+</a>
+
+<div class="card">
+  <h2>⚙️ Account</h2>
+  <div class="menu-list">
+    <a class="menu-item" href="settings.html">
+      <span class="material-symbols-rounded" aria-hidden="true">settings</span>
+      <span class="label">Settings</span>
+      <span class="material-symbols-rounded chev" aria-hidden="true">chevron_right</span>
+    </a>
+    <a class="menu-item danger" href="#" onclick="resetStudyArc(); return false;">
+      <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+      <span class="label">Reset StudyArc</span>
+    </a>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<div class="nav">
+  <a href="home.html">
+    <span class="material-symbols-rounded" aria-hidden="true">home</span>
+    <span>Home</span>
+  </a>
+  <a href="focus.html">
+    <span class="material-symbols-rounded" aria-hidden="true">timer</span>
+    <span>Focus</span>
+  </a>
+  <a href="todo.html">
+    <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+    <span>To-Do</span>
+  </a>
+  <a href="stats.html">
+    <span class="material-symbols-rounded" aria-hidden="true">bar_chart</span>
+    <span>Statistics</span>
+  </a>
+  <a class="active" href="profile.html" aria-current="page">
+    <span class="material-symbols-rounded" aria-hidden="true">person</span>
+    <span>Profile</span>
+  </a>
+</div>
+
+</body>
+</html>

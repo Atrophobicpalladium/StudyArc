@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e15">
+<meta name="color-scheme" content="dark">
+<title>StudyArc - Calendar</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="images/icon-192.png">
+<link rel="apple-touch-icon" href="images/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+<div class="header-row">
+  <h1>📅 Study Calendar</h1>
+</div>
+
+<div class="card">
+  <div class="cal-head">
+    <button class="cal-nav-btn" onclick="prevMonth()" aria-label="Previous month">
+      <span class="material-symbols-rounded" aria-hidden="true">chevron_left</span>
+    </button>
+    <h2 id="calendarLabel" style="margin-bottom:0;">Month</h2>
+    <button class="cal-nav-btn" onclick="nextMonth()" aria-label="Next month">
+      <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
+    </button>
+  </div>
+
+  <div class="cal-grid" id="calendarGrid"></div>
+
+  <div class="cal-legend">
+    <span><i style="background:var(--gradient);"></i>8+ hrs</span>
+    <span><i style="background:rgba(74,222,128,.6);"></i>4-8 hrs</span>
+    <span><i style="background:rgba(251,146,60,.6);"></i>&lt;4 hrs</span>
+    <span><i style="background:var(--surface-2);"></i>No study</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>This Month</h2>
+  <p id="calendarSummary">0h 0m total · 0 study days</p>
+</div>
+
+<div class="card">
+  <h2>📋 Your Tasks</h2>
+  <div id="taskList">
+    <p>No tasks yet.</p>
+  </div>
+</div>
+
+<div class="nav">
+  <a class="active" href="home.html" aria-current="page">
+    <span class="material-symbols-rounded" aria-hidden="true">home</span>
+    <span>Home</span>
+  </a>
+  <a href="focus.html">
+    <span class="material-symbols-rounded" aria-hidden="true">timer</span>
+    <span>Focus</span>
+  </a>
+  <a href="todo.html">
+    <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+    <span>To-Do</span>
+  </a>
+  <a href="stats.html">
+    <span class="material-symbols-rounded" aria-hidden="true">bar_chart</span>
+    <span>Statistics</span>
+  </a>
+  <a href="profile.html">
+    <span class="material-symbols-rounded" aria-hidden="true">person</span>
+    <span>Profile</span>
+  </a>
+</div>
+
+</body>
+</html>

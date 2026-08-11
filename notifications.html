@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e15">
+<meta name="color-scheme" content="dark">
+<title>Notifications - StudyArc</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="images/icon-192.png">
+<link rel="apple-touch-icon" href="images/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+<div class="header-row">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <h1>🔔 Notifications</h1>
+    <div id="notificationBadge" class="badge" style="display:none;background:var(--red);color:#fff;border:none;padding:3px 10px;"></div>
+  </div>
+</div>
+
+<div class="card">
+  <button class="button secondary" style="margin-bottom:10px;" onclick="markAllRead()">✓ Mark All Read</button>
+  <button class="button danger" onclick="clearNotifications()">🗑 Clear All Notifications</button>
+</div>
+
+<div id="notificationList">
+  <div class="card">
+    <h3 style="margin-bottom:4px;color:var(--text);font-size:14px;">No Notifications</h3>
+    <p>You're all caught up.</p>
+  </div>
+</div>
+
+<div class="nav">
+  <a href="home.html">
+    <span class="material-symbols-rounded" aria-hidden="true">home</span>
+    <span>Home</span>
+  </a>
+  <a href="focus.html">
+    <span class="material-symbols-rounded" aria-hidden="true">timer</span>
+    <span>Focus</span>
+  </a>
+  <a href="todo.html">
+    <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+    <span>To-Do</span>
+  </a>
+  <a href="stats.html">
+    <span class="material-symbols-rounded" aria-hidden="true">bar_chart</span>
+    <span>Statistics</span>
+  </a>
+  <a href="profile.html">
+    <span class="material-symbols-rounded" aria-hidden="true">person</span>
+    <span>Profile</span>
+  </a>
+</div>
+
+</body>
+</html>
