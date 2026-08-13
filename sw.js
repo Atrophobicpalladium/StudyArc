@@ -2,7 +2,7 @@
 // StudyArc Service Worker
 // ==========================================
 
-const CACHE_NAME = "studyarc-v3";
+const CACHE_NAME = "studyarc-v4";
 
 const FILES_TO_CACHE = [
 
@@ -26,13 +26,13 @@ const FILES_TO_CACHE = [
 
 "style.css",
 
-"js/app.js",
+"app.js",
 
 "manifest.json",
 
-"images/icon-192.png",
+"icon-192.png",
 
-"images/icon-512.png"
+"icon-512.png"
 
 ];
 
