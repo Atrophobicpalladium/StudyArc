@@ -32,10 +32,21 @@
     <p class="eyebrow" id="greetingLabel">Good Morning</p>
     <h1>Avinash 👋</h1>
   </div>
-  <a class="icon-btn" href="notifications.html" aria-label="Notifications">
-    <span class="material-symbols-rounded" aria-hidden="true">notifications</span>
-    <span class="dot" id="notificationBadge" style="display:none;"></span>
-  </a>
+  <div style="display:flex;align-items:center;gap:10px;position:relative;">
+    <a class="icon-btn" href="notifications.html" aria-label="Notifications">
+      <span class="material-symbols-rounded" aria-hidden="true">notifications</span>
+      <span class="dot" id="notificationBadge" style="display:none;"></span>
+    </a>
+    <button class="icon-btn" id="moreMenuBtn" onclick="toggleMoreMenu()" aria-label="More options" aria-haspopup="true">
+      <span class="material-symbols-rounded" aria-hidden="true">more_vert</span>
+    </button>
+    <div class="dropdown-menu" id="moreMenu" hidden>
+      <button class="dropdown-item" onclick="openCalculator()">
+        <span class="material-symbols-rounded" aria-hidden="true">calculate</span>
+        Calculator
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- Daily Goal -->
@@ -142,6 +153,44 @@
   </a>
 </div>
 
+<!-- Calculator -->
+<div class="modal-backdrop" id="calcModal" hidden onclick="if(event.target===this) closeCalculator()">
+  <div class="calc-sheet">
+    <div class="calc-header">
+      <h2>🧮 Calculator</h2>
+      <button class="icon-btn" onclick="closeCalculator()" aria-label="Close calculator">
+        <span class="material-symbols-rounded" aria-hidden="true">close</span>
+      </button>
+    </div>
+    <div class="calc-display" id="calcDisplay">0</div>
+    <div class="calc-grid">
+      <button class="calc-btn calc-fn" onclick="calcClear()">C</button>
+      <button class="calc-btn calc-fn" onclick="calcBackspace()" aria-label="Backspace">⌫</button>
+      <button class="calc-btn calc-fn" onclick="calcPercent()">%</button>
+      <button class="calc-btn calc-op" onclick="calcOperatorPress('÷')">÷</button>
+
+      <button class="calc-btn" onclick="calcDigit('7')">7</button>
+      <button class="calc-btn" onclick="calcDigit('8')">8</button>
+      <button class="calc-btn" onclick="calcDigit('9')">9</button>
+      <button class="calc-btn calc-op" onclick="calcOperatorPress('×')">×</button>
+
+      <button class="calc-btn" onclick="calcDigit('4')">4</button>
+      <button class="calc-btn" onclick="calcDigit('5')">5</button>
+      <button class="calc-btn" onclick="calcDigit('6')">6</button>
+      <button class="calc-btn calc-op" onclick="calcOperatorPress('−')">−</button>
+
+      <button class="calc-btn" onclick="calcDigit('1')">1</button>
+      <button class="calc-btn" onclick="calcDigit('2')">2</button>
+      <button class="calc-btn" onclick="calcDigit('3')">3</button>
+      <button class="calc-btn calc-op" onclick="calcOperatorPress('+')">+</button>
+
+      <button class="calc-btn calc-zero" onclick="calcDigit('0')">0</button>
+      <button class="calc-btn" onclick="calcDot()">.</button>
+      <button class="calc-btn calc-equals" onclick="calcEquals()">=</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // Mirrors whatever app.js drives on the legacy #goalFill width into the
 // visual progress arc + its ARIA value, so the arc stays in sync without
@@ -173,6 +222,122 @@
   var h = new Date().getHours();
   el.textContent = h < 12 ? "Good Morning" : h < 18 ? "Good Afternoon" : "Good Evening";
 })();
+
+// ---------- More menu ----------
+function toggleMoreMenu() {
+  document.getElementById('moreMenu').hidden = !document.getElementById('moreMenu').hidden;
+}
+
+document.addEventListener('click', function (e) {
+  var menu = document.getElementById('moreMenu');
+  var btn = document.getElementById('moreMenuBtn');
+  if (menu && !menu.hidden && e.target !== btn && !btn.contains(e.target) && !menu.contains(e.target)) {
+    menu.hidden = true;
+  }
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  var menu = document.getElementById('moreMenu');
+  var modal = document.getElementById('calcModal');
+  if (modal && !modal.hidden) closeCalculator();
+  else if (menu && !menu.hidden) menu.hidden = true;
+});
+
+// ---------- Calculator ----------
+var calcCurrent = "0";
+var calcPreviousValue = null;
+var calcOperatorSign = null;
+var calcResetOnNextDigit = false;
+
+function calcUpdateDisplay() {
+  document.getElementById('calcDisplay').textContent = calcCurrent;
+}
+
+function calcDigit(d) {
+  if (calcResetOnNextDigit) {
+    calcCurrent = "0";
+    calcResetOnNextDigit = false;
+  }
+  calcCurrent = (calcCurrent === "0") ? d : (calcCurrent.length < 12 ? calcCurrent + d : calcCurrent);
+  calcUpdateDisplay();
+}
+
+function calcDot() {
+  if (calcResetOnNextDigit) {
+    calcCurrent = "0";
+    calcResetOnNextDigit = false;
+  }
+  if (calcCurrent.indexOf(".") === -1) calcCurrent += ".";
+  calcUpdateDisplay();
+}
+
+function calcClear() {
+  calcCurrent = "0";
+  calcPreviousValue = null;
+  calcOperatorSign = null;
+  calcResetOnNextDigit = false;
+  calcUpdateDisplay();
+}
+
+function calcBackspace() {
+  if (calcResetOnNextDigit) return;
+  calcCurrent = calcCurrent.length > 1 ? calcCurrent.slice(0, -1) : "0";
+  calcUpdateDisplay();
+}
+
+function calcPercent() {
+  calcCurrent = calcFormatResult(parseFloat(calcCurrent) / 100);
+  calcUpdateDisplay();
+}
+
+function calcApply(a, b, op) {
+  if (op === "+") return a + b;
+  if (op === "−") return a - b;
+  if (op === "×") return a * b;
+  if (op === "÷") return b === 0 ? NaN : a / b;
+}
+
+function calcFormatResult(n) {
+  if (isNaN(n) || !isFinite(n)) return "Error";
+  var rounded = Math.round(n * 1e9) / 1e9;
+  var str = String(rounded);
+  return str.length > 12 ? rounded.toPrecision(10) : str;
+}
+
+function calcOperatorPress(op) {
+  var value = parseFloat(calcCurrent);
+  if (calcOperatorSign !== null && !calcResetOnNextDigit) {
+    var result = calcApply(calcPreviousValue, value, calcOperatorSign);
+    calcCurrent = calcFormatResult(result);
+    calcPreviousValue = parseFloat(calcCurrent);
+  } else {
+    calcPreviousValue = value;
+  }
+  calcOperatorSign = op;
+  calcResetOnNextDigit = true;
+  calcUpdateDisplay();
+}
+
+function calcEquals() {
+  if (calcOperatorSign === null) return;
+  var value = parseFloat(calcCurrent);
+  calcCurrent = calcFormatResult(calcApply(calcPreviousValue, value, calcOperatorSign));
+  calcPreviousValue = null;
+  calcOperatorSign = null;
+  calcResetOnNextDigit = true;
+  calcUpdateDisplay();
+}
+
+function openCalculator() {
+  document.getElementById('moreMenu').hidden = true;
+  calcClear();
+  document.getElementById('calcModal').hidden = false;
+}
+
+function closeCalculator() {
+  document.getElementById('calcModal').hidden = true;
+}
 </script>
 
 </body>
